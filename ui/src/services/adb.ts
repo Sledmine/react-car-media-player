@@ -19,6 +19,7 @@ export const getCurrentMediaSong = async () => {
     if (!currentMedia) {
         return null
     }
+    const isPlaying = lines.find((line) => line.includes("state=PlaybackState {state=3")) ? true : false
     const description = currentMedia.split("description=")[1]
     // Take all text up to the first comma as the title
     const title = description.split(",")[0]
@@ -52,7 +53,7 @@ export const getCurrentMediaSong = async () => {
         }
     }
 
-    return { title, artist, album, position: 0, cover }
+    return { title, artist, album, position: 0, cover, isPlaying }
 }
 
 export const sendMediaCommand = async (command: string) => {

@@ -25,7 +25,9 @@
       "height": 720,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/ui/public/icon.png"
+      "icon": "/ui/public/icon.png",
+      "fullscreen": true,
+      "alwaysOnTop": true
     }
   },
   "cli": {

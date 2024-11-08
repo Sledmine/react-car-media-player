@@ -6,6 +6,7 @@ import IconPause from './components/icons/Pause';
 import IconStepForward from './components/icons/StepForward';
 import IconStepBackward from './components/icons/StepBackward';
 import { getAndroidDevices, getCurrentMediaSong, sendMediaCommand } from './services/adb';
+import { SpectroBars } from './components/SpectroBars/SpectroBars';
 
 let interval: number;
 
@@ -19,7 +20,7 @@ function MusicPlayer() {
 
   const [backgroundImage, setBackgroundImage] = useState("https://cdns-images.dzcdn.net/images/cover/5b7c4f4b5b8e7c2d9a0d6d7c9a4a6f2e/1900x1900-000000-80-0-0.jpg");
   const [duration, setDuration] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
 
   const togglePlay = () => {
@@ -34,8 +35,9 @@ function MusicPlayer() {
   useEffect(() => {
     interval = setInterval(async () => {
       const songFromAndroid = await getCurrentMediaSong()
-      if (songFromAndroid && songFromAndroid.title !== currentSong.title) {
+      if (songFromAndroid && (songFromAndroid.title !== currentSong.title || songFromAndroid.isPlaying !== isPlaying)) {
         setCurrentSong(songFromAndroid);
+        setIsPlaying(songFromAndroid.isPlaying);
         setBackgroundImage(songFromAndroid.cover || backgroundImage);
       }
     }, 1000);
@@ -82,10 +84,7 @@ function MusicPlayer() {
           <small>{currentSong.album}</small>
         </div>
 
-        <div className="progress-bar">
-          <div className="progress" style={{ width: `${progressPercentage}%` }}></div>
-          <div className="current-time">{currentTime}</div>
-        </div>
+        {isPlaying && <SpectroBars />}
 
         <div className="controls">
           <button onClick={handlePreviousSong}><IconStepBackward /></button>
