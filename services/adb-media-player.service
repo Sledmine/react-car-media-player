@@ -1,0 +1,12 @@
+[Unit]
+Description=ADB Media Player
+After=network.target
+
+[Service]
+ExecStart=/home/sled/react-car-media-player/dist/adb-media-player/adb-media-player-linux_arm64
+RestartSec=10
+Restart=always
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

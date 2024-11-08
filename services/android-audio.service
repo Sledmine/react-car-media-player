@@ -1,0 +1,12 @@
+[Unit]
+Description=Android Audio Playback
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/scrcpy --no-video
+RestartSec=5
+Restart=always
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target

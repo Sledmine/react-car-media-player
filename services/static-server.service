@@ -1,0 +1,12 @@
+[Unit]
+Description=Static Server
+After=network.target
+
+[Service]
+ExecStart=/home/sled/.bun/bin/bun /home/sled/react-car-media-player/static.js
+RestartSec=10
+Restart=always
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
