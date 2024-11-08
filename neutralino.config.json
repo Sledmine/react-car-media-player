@@ -4,6 +4,7 @@
   "defaultMode": "window",
   "documentRoot": "/ui/dist/",
   "url": "/",
+  "port": 3000,
   "enableServer": true,
   "enableNativeAPI": true,
   "nativeAllowList": [
@@ -19,8 +20,8 @@
   "modes": {
     "window": {
       "title": "ADB Media Player",
-      "width": 800,
-      "height": 500,
+      "width": 1280,
+      "height": 720,
       "minWidth": 400,
       "minHeight": 200,
       "icon": "/ui/public/icon.png"
