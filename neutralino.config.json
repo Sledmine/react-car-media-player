@@ -1,7 +1,7 @@
 {
   "applicationId": "js.neutralino.zero",
   "version": "1.0.0",
-  "defaultMode": "window",
+  "defaultMode": "chrome",
   "documentRoot": "/ui/dist/",
   "url": "/",
   "port": 3000,
@@ -25,9 +25,10 @@
       "height": 720,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/ui/public/icon.png",
-      "fullscreen": true,
-      "alwaysOnTop": true
+      "icon": "/ui/public/icon.png"
+    },
+    "chrome": {
+      "args": "--start-fullscreen"
     }
   },
   "cli": {
