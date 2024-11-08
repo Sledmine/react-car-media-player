@@ -32,7 +32,7 @@
     }
   },
   "cli": {
-    "binaryName": "ADB Media Player",
+    "binaryName": "adb-media-player",
     "resourcesPath": "/ui/dist/",
     "extensionsPath": "/extensions/",
     "binaryVersion": "5.4.0",
