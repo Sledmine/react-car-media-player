@@ -9,6 +9,7 @@
   "enableNativeAPI": true,
   "nativeAllowList": [
     "app.*",
+    "filesystem.*",
     "os.execCommand",
     "os.spawnProcess",
     "os.updateSpawnedProcess",

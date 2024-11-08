@@ -1,3 +1,7 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .music-player {
   position: relative;
   display: flex;

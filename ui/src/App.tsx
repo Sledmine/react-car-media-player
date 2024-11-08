@@ -5,7 +5,9 @@ import IconPlay from './components/icons/Play';
 import IconPause from './components/icons/Pause';
 import IconStepForward from './components/icons/StepForward';
 import IconStepBackward from './components/icons/StepBackward';
-import { getAndroidDevices, getCurrentMediaSong } from './services/adb';
+import { getAndroidDevices, getCurrentMediaSong, sendMediaCommand } from './services/adb';
+
+let interval: number;
 
 function MusicPlayer() {
   const [currentSong, setCurrentSong] = useState({
@@ -20,28 +22,34 @@ function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const togglePlay = () => setIsPlaying(!isPlaying);
+  const togglePlay = () => {
+    if (isPlaying) {
+      sendMediaCommand("85");
+    } else {
+      sendMediaCommand("85");
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   useEffect(() => {
-    const interval = setInterval(async () => {
+    interval = setInterval(async () => {
       const songFromAndroid = await getCurrentMediaSong()
       if (songFromAndroid && songFromAndroid.title !== currentSong.title) {
         setCurrentSong(songFromAndroid);
-        setBackgroundImage(`https://picsum.photos/seed/${Math.random()}/512/512`);
-        setIsPlaying(true);
+        setBackgroundImage(songFromAndroid.cover || backgroundImage);
       }
-    }, 500);
+    }, 1000);
     return () => clearInterval(interval);
-  }, [currentSong]);
+  }, []);
 
   const progressPercentage = (currentTime / duration) * 100;
 
   const handleNextSong = () => {
-    setCurrentTime(0);
+    sendMediaCommand("87");
   }
 
   const handlePreviousSong = () => {
-    setCurrentTime(0);
+    sendMediaCommand("88");
   }
 
   return (
