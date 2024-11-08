@@ -1,6 +1,12 @@
-# neutralinojs-zero
-An empty Neutralinojs app, extend as you wish
+# ADB Media Player (React Car Media Player)
+A simple media player for Android using React and Neutralinojs.
 
+Prepare environment:
+```bash
+cd ui
+bun install
 ```
-neu create myapp --template neutralinojs/neutralinojs-zero
+Run the app:
+```bash
+neu run -- --mode=browser 
 ```
