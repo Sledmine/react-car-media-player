@@ -5,72 +5,51 @@ import IconPlay from './components/icons/Play';
 import IconPause from './components/icons/Pause';
 import IconStepForward from './components/icons/StepForward';
 import IconStepBackward from './components/icons/StepBackward';
+import { getAndroidDevices, getCurrentMediaSong } from './services/adb';
 
 function MusicPlayer() {
-  const [songs, setSongs] = useState([
-    {
-      title: "One X",
-      artist: "Three Days Grace",
-      album: "One X",
-      thumbnail: "https://cdns-images.dzcdn.net/images/cover/40ee194a256aad119746d7718b66977b/1900x1900-000000-80-0-0.jpg",
-      duration: 180,
-    },
-    {
-      title: "In The End",
-      artist: "Linkin Park",
-      album: "Hybrid Theory",
-      thumbnail: "https://cdns-images.dzcdn.net/images/cover/033a271b5ec10842c287827c39244fb5/1900x1900-000000-80-0-0.jpg",
-      duration: 180,
-    },
-    {
-      title: "Unknown Song",
-      artist: "Unknown Artist",
-      album: "Unknown Album",
-      thumbnail: "https://cdns-images.dzcdn.net/images/cover/5b7c4f4b5b8e7c2d9a0d6d7c9a4a6f2e/1900x1900-000000-80-0-0.jpg",
-      duration: 180,
-    },
-  ]);
+  const [currentSong, setCurrentSong] = useState({
+    title: "Unknown Song",
+    artist: "Unknown Artist",
+    album: "Unknown Album",
+    position: 0
+  });
 
-  const [currentSong, setCurrentSong] = useState(songs[0]);
-
+  const [backgroundImage, setBackgroundImage] = useState("https://cdns-images.dzcdn.net/images/cover/5b7c4f4b5b8e7c2d9a0d6d7c9a4a6f2e/1900x1900-000000-80-0-0.jpg");
+  const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
 
   const togglePlay = () => setIsPlaying(!isPlaying);
 
-  // Simulate song progress
   useEffect(() => {
-    let interval: number;
-    if (isPlaying) {
-      interval = setInterval(() => {
-        setCurrentTime((prevTime) => (prevTime < currentSong.duration ? prevTime + 1 : prevTime));
-      }, 500);
-    }
+    const interval = setInterval(async () => {
+      const songFromAndroid = await getCurrentMediaSong()
+      if (songFromAndroid && songFromAndroid.title !== currentSong.title) {
+        setCurrentSong(songFromAndroid);
+        setBackgroundImage(`https://picsum.photos/seed/${Math.random()}/512/512`);
+        setIsPlaying(true);
+      }
+    }, 500);
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [currentSong]);
 
-  const progressPercentage = (currentTime / currentSong.duration) * 100;
-
-  const currentSongIndex = songs.findIndex((song) => song.title === currentSong.title);
+  const progressPercentage = (currentTime / duration) * 100;
 
   const handleNextSong = () => {
-    const nextSongIndex = (currentSongIndex + 1) % songs.length;
-    setCurrentSong(songs[nextSongIndex]);
     setCurrentTime(0);
   }
 
   const handlePreviousSong = () => {
-    const nextSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-    setCurrentSong(songs[nextSongIndex]);
     setCurrentTime(0);
   }
 
   return (
     <div className="music-player">
       {/* Blurred background */}
-      <div
+      <img
         className="background"
-        style={{ backgroundImage: `url(${currentSong.thumbnail})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       />
 
       {/* Fade overlay on top of the background */}
@@ -78,7 +57,7 @@ function MusicPlayer() {
 
       <div className="header">
         <img
-          src="https://images.seeklogo.com/logo-png/9/2/nissan-logo-png_seeklogo-99770.png?v=638653847060000000"
+          src={"https://images.seeklogo.com/logo-png/9/2/nissan-logo-png_seeklogo-99770.png?v=638653847060000000"}
           alt="Nissan Logo"
           className="nissan-logo"
         />
@@ -87,7 +66,7 @@ function MusicPlayer() {
 
       {/* Content overlay */}
       <div className="content">
-        <img src={currentSong.thumbnail} alt="Song Thumbnail" className="thumbnail" />
+        <img src={backgroundImage} alt="Song Thumbnail" className="thumbnail" />
 
         <div className="song-info">
           <h2>{currentSong.title}</h2>
@@ -97,10 +76,11 @@ function MusicPlayer() {
 
         <div className="progress-bar">
           <div className="progress" style={{ width: `${progressPercentage}%` }}></div>
+          <div className="current-time">{currentTime}</div>
         </div>
 
         <div className="controls">
-          <button onClick={handleNextSong}><IconStepBackward/></button>
+          <button onClick={handleNextSong}><IconStepBackward /></button>
           <button onClick={togglePlay}>{isPlaying ? <IconPause /> : <IconPlay />}</button>
           <button onClick={handlePreviousSong}><IconStepForward /></button>
         </div>
