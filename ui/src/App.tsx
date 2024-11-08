@@ -88,9 +88,9 @@ function MusicPlayer() {
         </div>
 
         <div className="controls">
-          <button onClick={handleNextSong}><IconStepBackward /></button>
+          <button onClick={handlePreviousSong}><IconStepBackward /></button>
           <button onClick={togglePlay}>{isPlaying ? <IconPause /> : <IconPlay />}</button>
-          <button onClick={handlePreviousSong}><IconStepForward /></button>
+          <button onClick={handleNextSong}><IconStepForward /></button>
         </div>
 
       </div>
