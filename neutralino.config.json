@@ -1,0 +1,44 @@
+{
+  "applicationId": "js.neutralino.zero",
+  "version": "1.0.0",
+  "defaultMode": "window",
+  "documentRoot": "/ui/dist/",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "nativeAllowList": [
+    "app.*",
+    "os.execCommand",
+    "os.spawnProcess",
+    "os.updateSpawnedProcess",
+    "os.getEnv",
+    "os.showFolderDialog",
+    "os.showOpenDialog",
+    "os.getPath"
+  ],
+  "modes": {
+    "window": {
+      "title": "ADB Media Player",
+      "width": 800,
+      "height": 500,
+      "minWidth": 400,
+      "minHeight": 200,
+      "icon": "/ui/public/icon.png"
+    }
+  },
+  "cli": {
+    "binaryName": "ADB Media Player",
+    "resourcesPath": "/ui/dist/",
+    "extensionsPath": "/extensions/",
+    "binaryVersion": "5.4.0",
+    "clientVersion": "5.4.0",
+    "frontendLibrary": {
+      "patchFile": "/ui/index.html",
+      "devUrl": "http://localhost:5173",
+      "projectPath": "/ui",
+      "initCommand": "bun install",
+      "devCommand": "bun run dev",
+      "buildCommand": "bun run build"
+    }
+  }
+}

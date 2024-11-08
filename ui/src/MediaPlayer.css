@@ -1,0 +1,117 @@
+.music-player {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px);
+  z-index: -1;
+  transition: background-image 0.5s;
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+}
+
+.nissan-logo {
+  height: 30px; /* Adjust size as needed */
+  /*mix-blend-mode: difference;*/ /* Uncomment to blend with background */
+  mix-blend-mode: normal;
+}
+
+.nissan-text {
+  font-size: 19px;
+  font-weight: bold;
+  color: white;
+  margin-left: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  z-index: 1;
+}
+
+.thumbnail {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Fade overlay */
+.fade-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  z-index: -1;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+.song-info h2,
+.song-info p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Progress bar container */
+.progress-bar {
+  width: 80%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 20px 0;
+  position: relative;
+}
+
+/* Progress indicator */
+.progress {
+  height: 100%;
+  background-color: #61c0ff; /* Customize color as needed */
+  transition: width 0.5s ease;
+}
