@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import './MediaPlayer.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IconPlay from './components/icons/Play';
 import IconPause from './components/icons/Pause';
 import IconStepForward from './components/icons/StepForward';
 import IconStepBackward from './components/icons/StepBackward';
-import { getAndroidDevices, getCurrentMediaSong, sendMediaCommand } from './services/adb';
-import { SpectroBars } from './components/SpectroBars/SpectroBars';
+import { getCurrentMediaSong, sendMediaCommand } from './services/adb';
 
 let interval: number;
 
@@ -19,9 +17,7 @@ function MusicPlayer() {
   });
 
   const [backgroundImage, setBackgroundImage] = useState("https://cdns-images.dzcdn.net/images/cover/5b7c4f4b5b8e7c2d9a0d6d7c9a4a6f2e/1900x1900-000000-80-0-0.jpg");
-  const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [currentTime, setCurrentTime] = useState(0);
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -43,8 +39,6 @@ function MusicPlayer() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  const progressPercentage = (currentTime / duration) * 100;
 
   const handleNextSong = () => {
     sendMediaCommand("87");
@@ -83,8 +77,6 @@ function MusicPlayer() {
           <p>{currentSong.artist}</p>
           <small>{currentSong.album}</small>
         </div>
-
-        {isPlaying && <SpectroBars />}
 
         <div className="controls">
           <button onClick={handlePreviousSong}><IconStepBackward /></button>
