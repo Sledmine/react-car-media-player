@@ -91,21 +91,25 @@ function MusicPlayer() {
 
         {isPlaying && <SpectroBars />}
 
-        <div className="song-info">
-          <h2>{currentSong.title}</h2>
-          <p>{currentSong.artist}</p>
-          <small>{currentSong.album}</small>
+        <div className="song-meta">
+          <div className="song-info">
+            <h2>{currentSong.title}</h2>
+            <p>{currentSong.artist}</p>
+            <small>{currentSong.album}</small>
+          </div>
+          <div className="controls">
+            <button onClick={handlePreviousSong}>
+              <IconStepBackward />
+            </button>
+            <button onClick={togglePlay}>{isPlaying ? <IconPause /> : <IconPlay />}</button>
+            <button onClick={handleNextSong}>
+              <IconStepForward />
+            </button>
+          </div>
         </div>
 
-        <div className="controls">
-          <button onClick={handlePreviousSong}>
-            <IconStepBackward />
-          </button>
-          <button onClick={togglePlay}>{isPlaying ? <IconPause /> : <IconPlay />}</button>
-          <button onClick={handleNextSong}>
-            <IconStepForward />
-          </button>
-        </div>
+
+
       </div>
     </div>
   )
