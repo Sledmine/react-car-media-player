@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=File Manager
+Exec=pkill lxpanel
+Type=Application
