@@ -29,7 +29,6 @@ function MusicPlayer() {
     } else {
       sendMediaCommand("85")
     }
-    setIsPlaying(!isPlaying)
   }
 
   useEffect(() => {
