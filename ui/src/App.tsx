@@ -22,6 +22,7 @@ let lastMediaState = {
 function MusicPlayer() {
   const [currentSong, setCurrentSong] = useState(lastMediaState)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [currentTime, setCurrentTime] = useState(new Date())
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -33,6 +34,7 @@ function MusicPlayer() {
 
   useEffect(() => {
     interval = setInterval(async () => {
+      setCurrentTime(new Date())
       const songFromAndroid = await getCurrentMediaSong()
       if (
         songFromAndroid &&
@@ -80,6 +82,7 @@ function MusicPlayer() {
           className="nissan-logo"
         />
         <h1 className="nissan-text">ALTIMA</h1>
+        <h2 className="nissan-clock">{currentTime.toLocaleTimeString()}</h2>
       </div>
 
       {/* Content overlay */}

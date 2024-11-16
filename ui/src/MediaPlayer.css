@@ -41,6 +41,7 @@
 .header {
   position: fixed;
   height: 60px;
+  width: 100vw;
   top: 0px;
   left: 0px;
   display: flex;
@@ -62,7 +63,14 @@
   color: white;
   margin-left: 10px;
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
-  width: 100vw;
+}
+
+.nissan-clock {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  margin-left: auto;
+  margin-right: 12px;
 }
 
 .content {
