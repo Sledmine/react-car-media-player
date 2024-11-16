@@ -65,7 +65,9 @@ function MusicPlayer() {
   return (
     <div className="music-player">
       {/* Blurred background */}
-      <img className="background" style={{ backgroundImage: `url(${currentSong.cover})` }} />
+      <div className="background" style={{ backgroundImage: `url(${currentSong.cover})` }}>
+        <div className="background-blur" />
+      </div>
 
       {/* Fade overlay on top of the background */}
       <div className="fade-overlay"></div>
