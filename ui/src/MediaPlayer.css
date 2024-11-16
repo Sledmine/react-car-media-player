@@ -46,6 +46,7 @@
   font-weight: bold;
   color: white;
   margin-left: 10px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .content {
@@ -59,8 +60,8 @@
 }
 
 .thumbnail {
-  width: 200px;
-  height: 200px;
+  width: 256px;
+  height: 256px;
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);

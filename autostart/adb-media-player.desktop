@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=File Manager
+Exec=/home/sled/react-car-media-player/dist/adb-media-player/adb-media-player-linux_arm64
+Type=Application

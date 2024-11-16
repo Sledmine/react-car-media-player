@@ -6,8 +6,8 @@ export const SpectroBars: React.FC = () => {
 
     return (
         <div id="bars">
-            {[...Array(barCount)].map(() => (
-                <span/>
+            {[...Array(barCount)].map((_, i) => (
+                <span key={i}/>
             ))}
         </div>
     );
