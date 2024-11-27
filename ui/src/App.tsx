@@ -10,13 +10,23 @@ import CoverImage from "./assets/media-cover.jpg"
 
 let interval: number
 const defaultCoverImage = CoverImage
-let lastMediaState = {
+
+const defaultMedia = {
   title: "Unknown Song",
   artist: "Unknown Artist",
   album: "Unknown Album",
   position: 0,
   isPlaying: false,
   cover: defaultCoverImage
+}
+
+let lastMediaState = {
+  title: defaultMedia.title,
+  artist: defaultMedia.artist,
+  album: defaultMedia.album,
+  position: defaultMedia.position,
+  isPlaying: defaultMedia.isPlaying,
+  cover: defaultMedia.cover
 }
 
 function MusicPlayer() {
@@ -41,6 +51,10 @@ function MusicPlayer() {
         (songFromAndroid.title !== lastMediaState.title || songFromAndroid.isPlaying !== lastMediaState.isPlaying)
       ) {
         lastMediaState = { ...songFromAndroid, cover: songFromAndroid.cover || defaultCoverImage }
+        setCurrentSong(lastMediaState)
+      }
+      if (!songFromAndroid) {
+        lastMediaState = { ...defaultMedia, cover: defaultCoverImage }
         setCurrentSong(lastMediaState)
       }
     }, 1000)
