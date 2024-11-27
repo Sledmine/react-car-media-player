@@ -17,12 +17,20 @@ local function isPhoneConnected()
     return os.execute("adb devices -l | grep usb")
 end
 
+local function isScrcpyAlreadyRunning()
+    return os.execute("ps -ef | grep scrcpy | grep -v grep")
+end
+
 local function waitForDevice()
     if not isPhoneConnected() then
         print("Phone not connected! Waiting for device...")
         os.execute("adb wait-for-device")
     end
 
+    if isScrcpyAlreadyRunning() then
+        print("Screen mirror already running! Waiting for it to finish...")
+        os.execute("pkill -f scrcpy")
+    end
     os.execute("scrcpy --no-window")
     print("Phone connected! Starting screen mirror...")
 end
