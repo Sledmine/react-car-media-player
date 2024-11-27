@@ -23,7 +23,7 @@ local function waitForDevice()
         os.execute("adb wait-for-device")
     end
 
-    os.execute("scrcpy --no-control --no-video")
+    os.execute("scrcpy --no-window")
     print("Phone connected! Starting screen mirror...")
 end
 
