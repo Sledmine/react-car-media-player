@@ -3,11 +3,10 @@ Description=Android Audio Playback
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/scrcpy --no-video
+ExecStart=/usr/local/bin/scrcpy --no-control --no-video --audio-buffer=80
 RestartSec=5
 Restart=always
 KillSignal=SIGINT
-User=sled
 
 [Install]
 WantedBy=multi-user.target
