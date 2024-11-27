@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=Android Controller
+Exec=/home/sled/react-car-media-player/lua/android.lua
+Type=Application
