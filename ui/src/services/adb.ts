@@ -1,7 +1,7 @@
 import { os, filesystem } from "@neutralinojs/lib"
 
 // TODO Get the music files path from the device
-const musicFilesPath = "/storage/d2ba7298-3cef-421a-ac2b-16c510dbabc5/Music"
+const musicFilesPath = "/sdcard/Music"
 
 export const getAndroidDevices = async () => {
   const { stdOut } = await os.execCommand("adb devices")
